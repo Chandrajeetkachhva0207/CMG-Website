@@ -1,0 +1,799 @@
+@import "tailwindcss" source(none);
+
+@source "../src";
+
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+
+  --color-indigo: var(--indigo);
+  --color-purple: var(--purple);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* =========================================================
+   CMG SOFTTECH — FUTURISTIC DARK DESIGN SYSTEM
+   ========================================================= */
+
+:root {
+  --radius: 0.75rem;
+
+  /* -------------------------------------------------------
+     Core colors
+     ------------------------------------------------------- */
+
+  --background: oklch(0.075 0.018 285);
+  --surface: oklch(0.105 0.025 282);
+  --surface-2: oklch(0.14 0.035 280);
+
+  --foreground: oklch(0.97 0.008 280);
+
+  --card: oklch(0.12 0.028 280 / 72%);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(0.13 0.03 280);
+  --popover-foreground: var(--foreground);
+
+  /* -------------------------------------------------------
+     CMG primary — electric violet / magenta
+     ------------------------------------------------------- */
+
+  --primary: oklch(0.72 0.245 315);
+  --primary-glow: oklch(0.68 0.22 292);
+
+  --indigo: oklch(0.61 0.23 285);
+  --purple: oklch(0.58 0.25 300);
+
+  --primary-foreground: oklch(0.09 0.015 285);
+
+  /* -------------------------------------------------------
+     Secondary / muted
+     ------------------------------------------------------- */
+
+  --secondary: oklch(0.18 0.04 280);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.17 0.035 280);
+  --muted-foreground: oklch(0.69 0.025 280);
+
+  --accent: oklch(0.2 0.055 295);
+  --accent-foreground: var(--foreground);
+
+  /* -------------------------------------------------------
+     System colors
+     ------------------------------------------------------- */
+
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: var(--foreground);
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+
+  --ring: var(--primary);
+
+  /* -------------------------------------------------------
+     Gradients
+     ------------------------------------------------------- */
+
+  --gradient-text: linear-gradient(
+    100deg,
+    oklch(0.88 0.17 320) 0%,
+    var(--primary) 35%,
+    var(--primary-glow) 68%,
+    oklch(0.68 0.2 285) 100%
+  );
+
+  --gradient-primary: linear-gradient(120deg, var(--primary), var(--purple));
+
+  --gradient-border: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--primary) 85%, transparent),
+    transparent 35%,
+    transparent 65%,
+    color-mix(in oklab, var(--indigo) 80%, transparent)
+  );
+
+  --gradient-hero: radial-gradient(
+    circle at 50% 0%,
+    color-mix(in oklab, var(--primary) 15%, transparent),
+    transparent 42%
+  );
+
+  --gradient-grid: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--primary) 5%, transparent) 50%,
+    transparent 100%
+  );
+
+  /* -------------------------------------------------------
+     Shadows / glows
+     ------------------------------------------------------- */
+
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 35%, transparent),
+    0 0 35px color-mix(in oklab, var(--primary) 18%, transparent),
+    0 25px 80px -30px color-mix(in oklab, var(--primary) 45%, transparent);
+
+  --shadow-purple: 0 0 70px color-mix(in oklab, var(--purple) 18%, transparent);
+
+  --shadow-card: 0 30px 90px -45px oklch(0 0 0 / 90%);
+
+  --shadow-soft: 0 15px 50px -25px oklch(0 0 0 / 75%);
+
+  /* -------------------------------------------------------
+     Motion
+     ------------------------------------------------------- */
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-background);
+  }
+
+  body {
+    min-height: 100vh;
+
+    background:
+      radial-gradient(
+        ellipse 80% 50% at 50% -15%,
+        color-mix(in oklab, var(--primary) 9%, transparent),
+        transparent 65%
+      ),
+      var(--color-background);
+
+    color: var(--color-foreground);
+
+    font-family: var(--font-sans);
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    overflow-x: hidden;
+  }
+
+  body::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.035em;
+  }
+
+  h1 {
+    text-wrap: balance;
+  }
+
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 40%, transparent);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--purple), var(--primary));
+
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
+    border-radius: 5px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+@utility text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-glow {
+  text-shadow:
+    0 0 20px color-mix(in oklab, var(--primary) 30%, transparent),
+    0 0 50px color-mix(in oklab, var(--purple) 18%, transparent);
+}
+
+/* =========================================================
+   BACKGROUNDS
+   ========================================================= */
+
+@utility bg-gradient-primary {
+  background: var(--gradient-primary);
+}
+
+@utility bg-hero-glow {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in oklab, var(--primary) 12%, transparent),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 10% 40%,
+      color-mix(in oklab, var(--purple) 8%, transparent),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 90% 55%,
+      color-mix(in oklab, var(--indigo) 7%, transparent),
+      transparent 35%
+    );
+}
+
+/* =========================================================
+   FUTURISTIC GRID
+   ========================================================= */
+
+@utility grid-bg {
+  position: relative;
+
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 3.5%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 3.5%) 1px, transparent 1px);
+
+  background-size: 64px 64px;
+
+  mask-image: radial-gradient(
+    ellipse at center,
+    black 20%,
+    rgba(0, 0, 0, 0.85) 45%,
+    transparent 82%
+  );
+
+  -webkit-mask-image: radial-gradient(
+    ellipse at center,
+    black 20%,
+    rgba(0, 0, 0, 0.85) 45%,
+    transparent 82%
+  );
+}
+
+/* =========================================================
+   PERSPECTIVE GRID
+   Used for the futuristic hero / section backgrounds.
+   ========================================================= */
+
+@utility perspective-grid {
+  position: relative;
+  overflow: hidden;
+}
+
+@utility perspective-lines {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 49.8%,
+      color-mix(in oklab, var(--primary) 13%, transparent) 50%,
+      transparent 50.2%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.8%,
+      color-mix(in oklab, var(--primary) 10%, transparent) 50%,
+      transparent 50.2%
+    );
+
+  background-size: 180px 180px;
+
+  transform: perspective(700px) rotateX(62deg) scale(2.2);
+
+  transform-origin: center bottom;
+
+  opacity: 0.32;
+
+  mask-image: linear-gradient(to top, black, transparent 82%);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   GLASS
+   ========================================================= */
+
+@utility glass {
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--surface-2) 72%, transparent),
+    color-mix(in oklab, var(--surface) 48%, transparent)
+  );
+
+  backdrop-filter: blur(22px) saturate(145%);
+  -webkit-backdrop-filter: blur(22px) saturate(145%);
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    inset 0 1px 0 oklch(1 0 0 / 4%),
+    0 20px 60px -35px oklch(0 0 0 / 85%);
+}
+
+/* =========================================================
+   PREMIUM BORDER
+   ========================================================= */
+
+@utility glow-border {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    padding: 1px;
+
+    border-radius: inherit;
+
+    background: var(--gradient-border);
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
+    -webkit-mask-composite: xor;
+
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+
+    mask-composite: exclude;
+
+    opacity: 0;
+
+    transition: opacity 0.55s var(--ease-premium);
+
+    pointer-events: none;
+
+    z-index: 10;
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   SHADOWS
+   ========================================================= */
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-glow);
+}
+
+@utility shadow-purple {
+  box-shadow: var(--shadow-purple);
+}
+
+@utility shadow-card {
+  box-shadow: var(--shadow-card);
+}
+
+@utility shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+
+/* =========================================================
+   GLOW ORBS
+   ========================================================= */
+
+@utility orb {
+  position: absolute;
+
+  border-radius: 9999px;
+
+  filter: blur(100px);
+
+  pointer-events: none;
+
+  opacity: 0.5;
+
+  mix-blend-mode: screen;
+}
+
+@utility orb-purple {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--purple) 75%, transparent),
+    transparent 70%
+  );
+}
+
+@utility orb-primary {
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--primary) 70%, transparent),
+    transparent 70%
+  );
+}
+
+/* =========================================================
+   FUTURISTIC DOT
+   ========================================================= */
+
+@utility tech-dot {
+  position: relative;
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 9999px;
+
+  background: var(--primary);
+
+  box-shadow:
+    0 0 10px var(--primary),
+    0 0 25px color-mix(in oklab, var(--primary) 60%, transparent);
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@utility animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+@utility animate-drift {
+  animation: drift 18s ease-in-out infinite;
+}
+
+@utility animate-pulse-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+
+@utility animate-glow {
+  animation: glow 3.5s ease-in-out infinite;
+}
+
+@utility animate-scan {
+  animation: scan 5s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(35px, -25px) scale(1.08);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--primary) 60%, transparent),
+      0 0 12px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 7px transparent,
+      0 0 20px color-mix(in oklab, var(--primary) 80%, transparent);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+/* =========================================================
+   HORIZONTAL LIGHT LINE
+   ========================================================= */
+
+@utility tech-line {
+  position: relative;
+
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--primary) 65%, transparent),
+    transparent
+  );
+}
+
+@utility tech-line-glow {
+  box-shadow: 0 0 15px color-mix(in oklab, var(--primary) 30%, transparent);
+}
+
+/* =========================================================
+   NOISE / ATMOSPHERE
+   ========================================================= */
+
+@utility noise {
+  position: relative;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.025;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+
+    mix-blend-mode: screen;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  :root {
+    --radius: 0.65rem;
+  }
+
+  body {
+    background:
+      radial-gradient(
+        ellipse 100% 40% at 50% -10%,
+        color-mix(in oklab, var(--primary) 8%, transparent),
+        transparent 65%
+      ),
+      var(--color-background);
+  }
+
+  .perspective-lines {
+    opacity: 0.18;
+    transform: perspective(500px) rotateX(62deg) scale(1.8);
+  }
+}
+
+/* =========================================================
+   CUSTOM CURSOR
+   Hidden on touch devices via @media (pointer: fine)
+   ========================================================= */
+
+@media (pointer: fine) {
+  /* Hide the system cursor globally */
+  * {
+    cursor: none !important;
+  }
+
+  .cursor-ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+
+    width: 36px;
+    height: 36px;
+    margin-left: -18px;
+    margin-top: -18px;
+
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in oklab, var(--primary) 70%, transparent);
+
+    background: transparent;
+
+    transition:
+      width 0.25s var(--ease-premium),
+      height 0.25s var(--ease-premium),
+      margin 0.25s var(--ease-premium),
+      background 0.25s var(--ease-premium),
+      border-color 0.25s var(--ease-premium),
+      opacity 0.2s ease;
+  }
+
+  .cursor-ring[data-hover="true"] {
+    width: 52px;
+    height: 52px;
+    margin-left: -26px;
+    margin-top: -26px;
+    background: color-mix(in oklab, var(--primary) 12%, transparent);
+    border-color: var(--primary);
+    box-shadow: 0 0 20px color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    pointer-events: none;
+
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    margin-top: -2.5px;
+
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary);
+  }
+}
+
+/* =========================================================
+   SCROLL PROGRESS BAR
+   ========================================================= */
+
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9998;
+  height: 2px;
+  transform-origin: left;
+
+  background: linear-gradient(
+    90deg,
+    oklch(0.88 0.17 320),
+    var(--primary),
+    var(--primary-glow),
+    oklch(0.68 0.2 285)
+  );
+
+  box-shadow:
+    0 0 10px color-mix(in oklab, var(--primary) 60%, transparent),
+    0 0 3px color-mix(in oklab, var(--primary) 80%, transparent);
+
+  pointer-events: none;
+}
+
