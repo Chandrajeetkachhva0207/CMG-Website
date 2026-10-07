@@ -3,7 +3,8 @@ import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export const ease = [0.22, 1, 0.36, 1] as const;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const ease: any = [0.22, 1, 0.36, 1];
 
 export function Reveal({
   children,

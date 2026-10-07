@@ -501,21 +501,91 @@ export function Services() {
    TECHNOLOGY
 ========================================================= */
 
-const tech = [
-  "React",
-  "JavaScript",
-  "TypeScript",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "SQL",
-  "HTML5",
-  "CSS3",
-  "Tailwind CSS",
-  "Git",
-  "GitHub",
-  "Vercel",
-  "Render",
+const techGroups = [
+  {
+    title: "Frontend Development",
+    items: [
+      "React.js",
+      "Next.js",
+      "JavaScript",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Redux",
+      "Vite",
+    ],
+  },
+  {
+    title: "Backend Development",
+    items: [
+      "Node.js",
+      "Express.js",
+      "Java",
+      "Spring Boot",
+      "REST APIs",
+      "Microservices",
+      "JWT Authentication",
+    ],
+  },
+  {
+    title: "Databases",
+    items: ["MongoDB", "MySQL", "PostgreSQL", "SQL", "Firebase", "Redis"],
+  },
+  {
+    title: "Data & AI",
+    items: [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Scikit-learn",
+      "Matplotlib",
+      "Power BI",
+      "Machine Learning",
+      "Data Analytics",
+      "Generative AI",
+      "AI/ML APIs",
+    ],
+  },
+  {
+    title: "Mobile Development",
+    items: ["React Native", "Flutter", "Android", "Kotlin"],
+  },
+  {
+    title: "Cloud & DevOps",
+    items: [
+      "AWS",
+      "Microsoft Azure",
+      "Google Cloud",
+      "Docker",
+      "Git",
+      "GitHub",
+      "GitHub Actions",
+      "CI/CD",
+    ],
+  },
+  {
+    title: "Deployment & Hosting",
+    items: ["Vercel", "Render", "Netlify", "AWS", "Firebase", "Cloudflare"],
+  },
+  {
+    title: "Tools & Platforms",
+    items: ["VS Code", "Postman", "Figma", "npm", "REST API", "Swagger", "Jira"],
+  },
+  {
+    title: "Modern Technologies",
+    items: [
+      "Blockchain",
+      "Web3",
+      "AI & Machine Learning",
+      "Generative AI",
+      "Cloud Computing",
+      "IoT",
+      "Cybersecurity",
+      "Automation",
+    ],
+  },
 ];
 
 export function TechStack() {
@@ -529,7 +599,7 @@ export function TechStack() {
             Built With <span className="text-gradient">Modern Technology</span>
           </>
         }
-        sub="A modern stack chosen to build fast, maintainable, and scalable digital products."
+        sub="A powerful and modern technology ecosystem designed to build fast, secure, scalable, and future-ready digital products."
       />
 
       <motion.div
@@ -543,49 +613,63 @@ export function TechStack() {
           hidden: {},
           visible: {},
         }}
-        className="mx-auto mt-12 flex max-w-4xl flex-wrap justify-center gap-2.5 sm:mt-14 sm:gap-3"
+        className="mx-auto mt-12 grid max-w-6xl gap-5 sm:mt-14 md:grid-cols-2 xl:grid-cols-3"
       >
-        {tech.map((item, i) => (
+        {techGroups.map((group, groupIndex) => (
           <motion.div
-            key={item}
-            variants={{
-              hidden: {
-                opacity: 0,
-                y: 20,
-                scale: 0.94,
-                filter: "blur(4px)",
-              },
-              visible: {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                filter: "blur(0px)",
-              },
-            }}
+            key={group.title}
+            initial={{ opacity: 0, y: 24, filter: "blur(5px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{
               duration: 0.6,
-              delay: i * 0.055,
+              delay: groupIndex * 0.07,
               ease: [0.22, 1, 0.36, 1],
             }}
-            whileHover={{
-              y: -5,
-              scale: 1.04,
-              transition: {
-                duration: 0.25,
-                ease: [0.22, 1, 0.36, 1],
-              },
-            }}
-            className="glass group relative flex cursor-default items-center gap-2 overflow-hidden rounded-lg border border-border px-3.5 py-2.5 transition-all duration-500 hover:border-primary/30 hover:shadow-glow sm:px-4 sm:py-3"
+            whileHover={{ y: -4 }}
+            className="glass group relative overflow-hidden rounded-2xl border border-border p-5 transition-all duration-500 hover:border-primary/30 hover:shadow-glow"
           >
-            {/* subtle hover glow */}
-            <span className="pointer-events-none absolute -right-5 -top-5 h-12 w-12 rounded-full bg-primary/15 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
+            <span className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-primary/10 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
 
-            <Code2 className="relative z-10 h-3.5 w-3.5 text-primary transition-transform duration-500 group-hover:rotate-12 sm:h-4 sm:w-4" />
+            <div className="relative z-10 flex items-center gap-2">
+              <Code2 className="h-4 w-4 text-primary" />
+              <h3 className="text-base font-semibold tracking-tight text-foreground">{group.title}</h3>
+            </div>
 
-            <span className="relative z-10 text-xs font-medium sm:text-sm">{item}</span>
+            <div className="relative z-10 mt-4 flex flex-wrap gap-2">
+              {group.items.map((item, i) => (
+                <motion.span
+                  key={item}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: groupIndex * 0.08 + i * 0.03,
+                  }}
+                  className="rounded-full border border-border/80 bg-white/2 px-2.5 py-1.5 text-xs font-medium text-muted-foreground transition-all duration-300 hover:border-primary/40 hover:text-foreground"
+                >
+                  {item}
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
         ))}
       </motion.div>
+
+      <motion.p
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto mt-8 max-w-4xl text-center text-base leading-7 text-muted-foreground"
+      >
+        We combine <span className="font-medium text-foreground">modern frameworks</span>,{" "}
+        <span className="font-medium text-foreground">scalable architectures</span>,{" "}
+        <span className="font-medium text-foreground">cloud platforms</span>,{" "}
+        <span className="font-medium text-foreground">AI technologies</span>, and{" "}
+        <span className="font-medium text-foreground">industry-standard development practices</span> to deliver reliable digital solutions for businesses and startups.
+      </motion.p>
     </Section>
   );
 }

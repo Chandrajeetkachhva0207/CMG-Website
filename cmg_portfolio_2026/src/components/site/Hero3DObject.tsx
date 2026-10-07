@@ -1,13 +1,6 @@
 import { useRef, useMemo } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
-import {
-  Sphere,
-  MeshDistortMaterial,
-  Points,
-  PointMaterial,
-  Torus,
-  Line,
-} from "@react-three/drei";
+import { Sphere, MeshDistortMaterial, Points, PointMaterial, Torus, Line } from "@react-three/drei";
 import * as THREE from "three";
 
 /* ----------------------------------------------------------------
@@ -72,13 +65,7 @@ function Connection({
   opacity?: number;
 }) {
   return (
-    <Line
-      points={[start, end]}
-      color="#a855f7"
-      transparent
-      opacity={opacity}
-      lineWidth={0.5}
-    />
+    <Line points={[start, end]} color="#a855f7" transparent opacity={opacity} lineWidth={0.5} />
   );
 }
 
@@ -156,13 +143,28 @@ function Ecosystem({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
   const nodes: [number, number, number][] = [n0, n1, n2, n3, n4, n5, n6, n7];
 
   const connections: Array<[[number, number, number], [number, number, number]]> = [
-    [n0, n1], [n0, n2], [n0, n3], [n0, n4], [n0, n7],
-    [n1, n5], [n2, n6], [n3, n5], [n4, n6], [n1, n7], [n2, n7],
+    [n0, n1],
+    [n0, n2],
+    [n0, n3],
+    [n0, n4],
+    [n0, n7],
+    [n1, n5],
+    [n2, n6],
+    [n3, n5],
+    [n4, n6],
+    [n1, n7],
+    [n2, n7],
   ];
 
   const nodeColors: string[] = [
-    "#a855f7", "#8b5cf6", "#d946ef", "#6366f1",
-    "#c084fc", "#7c3aed", "#db2777", "#9333ea",
+    "#a855f7",
+    "#8b5cf6",
+    "#d946ef",
+    "#6366f1",
+    "#c084fc",
+    "#7c3aed",
+    "#db2777",
+    "#9333ea",
   ];
 
   useFrame((state) => {
@@ -186,12 +188,7 @@ function Ecosystem({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
 
       {/* Connections */}
       {connections.map(([start, end], i) => (
-        <Connection
-          key={i}
-          start={start}
-          end={end}
-          opacity={0.18 + (i % 3) * 0.05}
-        />
+        <Connection key={i} start={start} end={end} opacity={0.18 + (i % 3) * 0.05} />
       ))}
 
       {/* Center distort sphere */}
@@ -303,8 +300,20 @@ export function Hero3DObject({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mous
 
       {/* Orbit rings */}
       <OrbitRing radius={2.6} rotation={[0.4, 0, 0]} color="#8b5cf6" speed={0.4} />
-      <OrbitRing radius={3.2} rotation={[1.1, 0.3, 0]} color="#d946ef" speed={-0.28} dotOffset={Math.PI} />
-      <OrbitRing radius={2.0} rotation={[0, 0, 0.8]} color="#6366f1" speed={0.55} dotOffset={Math.PI * 0.5} />
+      <OrbitRing
+        radius={3.2}
+        rotation={[1.1, 0.3, 0]}
+        color="#d946ef"
+        speed={-0.28}
+        dotOffset={Math.PI}
+      />
+      <OrbitRing
+        radius={2.0}
+        rotation={[0, 0, 0.8]}
+        color="#6366f1"
+        speed={0.55}
+        dotOffset={Math.PI * 0.5}
+      />
 
       {/* Main ecosystem */}
       <Ecosystem mouseX={mouseX} mouseY={mouseY} />

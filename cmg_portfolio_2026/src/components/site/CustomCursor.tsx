@@ -33,7 +33,9 @@ export function CustomCursor() {
 
     const onEnter = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const interactive = target.closest("a, button, [data-cursor-hover], input, textarea, select, label");
+      const interactive = target.closest(
+        "a, button, [data-cursor-hover], input, textarea, select, label",
+      );
       if (interactive && ringRef.current) {
         isHovering.current = true;
         ringRef.current.setAttribute("data-hover", "true");
@@ -42,7 +44,9 @@ export function CustomCursor() {
 
     const onLeave = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      const interactive = target.closest("a, button, [data-cursor-hover], input, textarea, select, label");
+      const interactive = target.closest(
+        "a, button, [data-cursor-hover], input, textarea, select, label",
+      );
       if (interactive && ringRef.current) {
         isHovering.current = false;
         ringRef.current.removeAttribute("data-hover");

@@ -59,7 +59,10 @@ export function Hero() {
       <div className="grid-bg absolute inset-0" aria-hidden />
 
       {/* Perspective floor grid */}
-      <div className="perspective-grid absolute bottom-0 left-0 right-0 h-72 opacity-20" aria-hidden>
+      <div
+        className="perspective-grid absolute bottom-0 left-0 right-0 h-72 opacity-20"
+        aria-hidden
+      >
         <div className="perspective-lines" />
       </div>
 
@@ -321,7 +324,10 @@ export function Hero() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.4, duration: 0.7, ease }}
-            style={{ x: useTransform(sx, [-0.5, 0.5], [8, -8]), y: useTransform(sy, [-0.5, 0.5], [8, -8]) }}
+            style={{
+              x: useTransform(sx, [-0.5, 0.5], [8, -8]),
+              y: useTransform(sy, [-0.5, 0.5], [8, -8]),
+            }}
             className="glass animate-float absolute -left-[5%] top-[15%] rounded-xl border border-border/50 px-3 py-2 [animation-delay:-3s]"
           >
             <div className="flex items-center gap-1.5 text-[10px] font-medium text-muted-foreground">

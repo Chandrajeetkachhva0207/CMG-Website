@@ -10,6 +10,7 @@ import {
   MessageCircle,
   Send,
   Sparkles,
+  type LucideIcon,
 } from "lucide-react";
 import { CTAButton, Reveal, Section, SectionHeading, ease } from "./primitives";
 import { Logo, navLinks } from "./Navbar";
@@ -658,7 +659,7 @@ Sent from CMG Softtech Website
    FOOTER
 ========================================================= */
 
-const socials = [
+const socials: { l: string; href: string; icon: LucideIcon }[] = [
   {
     l: "LinkedIn",
     href: "https://www.linkedin.com/company/cmgsofttech",

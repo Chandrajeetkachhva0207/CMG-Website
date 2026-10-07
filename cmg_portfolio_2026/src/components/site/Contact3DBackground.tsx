@@ -1,6 +1,14 @@
 import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Sphere, Torus, MeshDistortMaterial, Line, Points, PointMaterial } from "@react-three/drei";
+import {
+  Float,
+  Sphere,
+  Torus,
+  MeshDistortMaterial,
+  Line,
+  Points,
+  PointMaterial,
+} from "@react-three/drei";
 import * as THREE from "three";
 
 /* ----------------------------------------------------------------
@@ -22,7 +30,12 @@ function DataNode({
   floatIntensity: number;
 }) {
   return (
-    <Float speed={speed} rotationIntensity={rotIntensity} floatIntensity={floatIntensity} position={position}>
+    <Float
+      speed={speed}
+      rotationIntensity={rotIntensity}
+      floatIntensity={floatIntensity}
+      position={position}
+    >
       <Sphere args={[size, 24, 24]}>
         <MeshDistortMaterial
           color={color}
@@ -137,11 +150,46 @@ function Scene() {
   return (
     <group ref={groupRef}>
       {/* Primary data nodes */}
-      <DataNode position={[-4, 2, -5]} color="#8b5cf6" size={0.8} speed={1.8} rotIntensity={1} floatIntensity={1.8} />
-      <DataNode position={[5, -1, -8]} color="#d946ef" size={1.1} speed={1.3} rotIntensity={1.5} floatIntensity={1.5} />
-      <DataNode position={[-3, -3, -6]} color="#6366f1" size={0.65} speed={2.2} rotIntensity={1.2} floatIntensity={2.2} />
-      <DataNode position={[3, 3, -7]} color="#a855f7" size={0.5} speed={2.8} rotIntensity={2} floatIntensity={2.5} />
-      <DataNode position={[0, 0, -4]} color="#c084fc" size={0.45} speed={1.5} rotIntensity={0.8} floatIntensity={1.2} />
+      <DataNode
+        position={[-4, 2, -5]}
+        color="#8b5cf6"
+        size={0.8}
+        speed={1.8}
+        rotIntensity={1}
+        floatIntensity={1.8}
+      />
+      <DataNode
+        position={[5, -1, -8]}
+        color="#d946ef"
+        size={1.1}
+        speed={1.3}
+        rotIntensity={1.5}
+        floatIntensity={1.5}
+      />
+      <DataNode
+        position={[-3, -3, -6]}
+        color="#6366f1"
+        size={0.65}
+        speed={2.2}
+        rotIntensity={1.2}
+        floatIntensity={2.2}
+      />
+      <DataNode
+        position={[3, 3, -7]}
+        color="#a855f7"
+        size={0.5}
+        speed={2.8}
+        rotIntensity={2}
+        floatIntensity={2.5}
+      />
+      <DataNode
+        position={[0, 0, -4]}
+        color="#c084fc"
+        size={0.45}
+        speed={1.5}
+        rotIntensity={0.8}
+        floatIntensity={1.2}
+      />
 
       {/* Wireframe torus ring */}
       <Float speed={1} rotationIntensity={2} floatIntensity={1} position={[5, -1, -8]}>
