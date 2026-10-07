@@ -58,6 +58,7 @@
 
 :root {
   --radius: 0.75rem;
+  color-scheme: dark;
 
   /* -------------------------------------------------------
      Core colors
@@ -167,6 +168,68 @@
      ------------------------------------------------------- */
 
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.light {
+  color-scheme: light;
+
+  --background: oklch(0.98 0.012 260);
+  --surface: oklch(0.965 0.018 260);
+  --surface-2: oklch(0.94 0.024 260);
+
+  --foreground: oklch(0.17 0.02 260);
+
+  --card: oklch(1 0 0 / 80%);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(1 0 0 / 92%);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.62 0.24 245);
+  --primary-glow: oklch(0.68 0.18 220);
+
+  --indigo: oklch(0.58 0.22 240);
+  --purple: oklch(0.58 0.2 280);
+
+  --primary-foreground: oklch(0.98 0.02 250);
+
+  --secondary: oklch(0.96 0.018 260);
+  --secondary-foreground: var(--foreground);
+
+  --muted: oklch(0.95 0.02 260);
+  --muted-foreground: oklch(0.48 0.02 260);
+
+  --accent: oklch(0.96 0.03 250);
+  --accent-foreground: var(--foreground);
+
+  --destructive: oklch(0.6 0.2 25);
+  --destructive-foreground: var(--foreground);
+
+  --border: oklch(0.2 0.02 260 / 12%);
+  --input: oklch(0.2 0.02 260 / 10%);
+  --ring: var(--primary);
+
+  --gradient-text: linear-gradient(
+    100deg,
+    oklch(0.34 0.16 245) 0%,
+    oklch(0.52 0.24 250) 35%,
+    oklch(0.62 0.22 220) 68%,
+    oklch(0.58 0.2 280) 100%
+  );
+
+  --gradient-primary: linear-gradient(120deg, var(--primary), var(--purple));
+
+  --shadow-glow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 20%, transparent),
+    0 0 28px color-mix(in oklab, var(--primary) 16%, transparent),
+    0 22px 70px -32px color-mix(in oklab, var(--primary) 35%, transparent);
+
+  --shadow-purple: 0 0 50px color-mix(in oklab, var(--purple) 16%, transparent);
+  --shadow-soft: 0 15px 40px -30px oklch(0.3 0.01 260 / 40%);
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 /* =========================================================

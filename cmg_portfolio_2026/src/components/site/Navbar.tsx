@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, Moon, SunMedium, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const navLinks = [
@@ -40,6 +40,25 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("home");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const storedTheme = localStorage.getItem("cmg-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const nextTheme = storedTheme === "light" || storedTheme === "dark" ? storedTheme : systemDark ? "dark" : "light";
+
+    setTheme(nextTheme);
+    root.classList.toggle("dark", nextTheme === "dark");
+    root.classList.toggle("light", nextTheme === "light");
+  }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("dark", theme === "dark");
+    root.classList.toggle("light", theme === "light");
+    localStorage.setItem("cmg-theme", theme);
+  }, [theme]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -249,6 +268,29 @@ export function Navbar() {
               })}
             </ul>
 
+            {/* Theme toggle */}
+            <button
+              type="button"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+              className="
+                relative hidden h-11 w-11
+                items-center justify-center
+                rounded-xl border
+                border-border/80 bg-white/[0.04]
+                text-foreground transition-all duration-300
+                hover:border-primary/40 hover:bg-primary/[0.08]
+                lg:grid
+              "
+            >
+              <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-primary/10 to-transparent opacity-80" />
+              {theme === "dark" ? (
+                <SunMedium className="relative z-10 h-4 w-4 text-amber-400" />
+              ) : (
+                <Moon className="relative z-10 h-4 w-4 text-primary" />
+              )}
+            </button>
+
             {/* Desktop CTA */}
             <motion.a
               href="#contact"
@@ -300,27 +342,46 @@ export function Navbar() {
             </motion.a>
 
             {/* Mobile Menu Button */}
-            <motion.button
-              type="button"
-              whileTap={{ scale: 0.92 }}
-              onClick={() => setOpen((current) => !current)}
-              className="
-                relative grid h-11 w-11
-                place-items-center
-                rounded-xl
-                border border-white/10
-                bg-white/[0.03]
-                text-foreground
-                transition-all duration-300
-                hover:border-primary/40
-                hover:bg-primary/[0.07]
-                hover:shadow-[0_0_20px_hsl(var(--primary)/0.12)]
-                lg:hidden
-              "
-              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-              aria-expanded={open}
-              aria-controls="mobile-navigation"
-            >
+            <div className="flex items-center gap-2 lg:hidden">
+              <button
+                type="button"
+                aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+                className="
+                  relative grid h-11 w-11
+                  place-items-center
+                  rounded-xl
+                  border border-border/80
+                  bg-white/[0.04]
+                  text-foreground
+                  transition-all duration-300
+                  hover:border-primary/40
+                  hover:bg-primary/[0.08]
+                "
+              >
+                {theme === "dark" ? <SunMedium className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-primary" />}
+              </button>
+
+              <motion.button
+                type="button"
+                whileTap={{ scale: 0.92 }}
+                onClick={() => setOpen((current) => !current)}
+                className="
+                  relative grid h-11 w-11
+                  place-items-center
+                  rounded-xl
+                  border border-white/10
+                  bg-white/[0.03]
+                  text-foreground
+                  transition-all duration-300
+                  hover:border-primary/40
+                  hover:bg-primary/[0.07]
+                  hover:shadow-[0_0_20px_hsl(var(--primary)/0.12)]
+                "
+                aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={open}
+                aria-controls="mobile-navigation"
+              >
               {/* Button glow */}
               <span
                 className={cn(
@@ -331,54 +392,55 @@ export function Navbar() {
                 )}
               />
 
-              <AnimatePresence mode="wait" initial={false}>
-                {open ? (
-                  <motion.span
-                    key="close"
-                    initial={{
-                      opacity: 0,
-                      rotate: -90,
-                      scale: 0.7,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      rotate: 0,
-                      scale: 1,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      rotate: 90,
-                      scale: 0.7,
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <X className="relative z-10 h-5 w-5 text-primary" />
-                  </motion.span>
-                ) : (
-                  <motion.span
-                    key="menu"
-                    initial={{
-                      opacity: 0,
-                      rotate: 90,
-                      scale: 0.7,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      rotate: 0,
-                      scale: 1,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      rotate: -90,
-                      scale: 0.7,
-                    }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Menu className="relative z-10 h-5 w-5" />
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.button>
+                <AnimatePresence mode="wait" initial={false}>
+                  {open ? (
+                    <motion.span
+                      key="close"
+                      initial={{
+                        opacity: 0,
+                        rotate: -90,
+                        scale: 0.7,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        rotate: 0,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        rotate: 90,
+                        scale: 0.7,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X className="relative z-10 h-5 w-5 text-primary" />
+                    </motion.span>
+                  ) : (
+                    <motion.span
+                      key="menu"
+                      initial={{
+                        opacity: 0,
+                        rotate: 90,
+                        scale: 0.7,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        rotate: 0,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        rotate: -90,
+                        scale: 0.7,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu className="relative z-10 h-5 w-5" />
+                    </motion.span>
+                  )}
+                </AnimatePresence>
+              </motion.button>
+            </div>
           </nav>
 
           {/* Mobile Navigation */}
