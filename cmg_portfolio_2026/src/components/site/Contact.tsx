@@ -7,6 +7,7 @@ import {
   Github,
   Instagram,
   Linkedin,
+  Mail,
   MessageCircle,
   Send,
   Sparkles,
@@ -385,6 +386,21 @@ Sent from CMG Softtech Website
                 </div>
               </motion.div>
 
+              <a
+                href="mailto:cmgsofttech@gmail.com"
+                className="mt-3 flex items-center gap-3 rounded-xl border border-border bg-background/50 p-4 transition-colors hover:border-primary/30 hover:bg-background/70"
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <Mail className="h-4 w-4" />
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-medium">Email us</span>
+                  <span className="block break-all text-xs text-muted-foreground">
+                    cmgsofttech@gmail.com
+                  </span>
+                </span>
+              </a>
+
               {/* Process */}
               <div className="mt-8 space-y-4">
                 {[
@@ -430,7 +446,7 @@ Sent from CMG Softtech Website
 
                 <div className="grid grid-cols-2 gap-3">
                   <a
-                    href="https://www.instagram.com/cmgsofttech"
+                    href="https://www.instagram.com/cmg_softtech?stkn=MWVudHZhdG1sbjNjMg=="
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center gap-2.5 rounded-xl border border-border bg-background/50 p-3 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#E4405F]/50 hover:bg-[#E4405F]/10 hover:shadow-[0_0_20px_rgba(228,64,95,0.2)]"
@@ -483,7 +499,7 @@ Sent from CMG Softtech Website
           <Reveal delay={0.12}>
             <form
               onSubmit={onSubmit}
-              className="relative overflow-hidden rounded-2xl border border-border bg-surface/45 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.18)] sm:p-8 lg:p-10"
+              className="relative overflow-hidden rounded-2xl border border-border bg-surface/45 p-6 shadow-[var(--shadow-form)] sm:p-8 lg:p-10"
             >
               {/* Form glow */}
               <div
@@ -661,13 +677,18 @@ Sent from CMG Softtech Website
 
 const socials: { l: string; href: string; icon: LucideIcon }[] = [
   {
+    l: "Email",
+    href: "mailto:cmgsofttech@gmail.com",
+    icon: Mail,
+  },
+  {
     l: "LinkedIn",
     href: "https://www.linkedin.com/company/cmgsofttech",
     icon: Linkedin,
   },
   {
     l: "Instagram",
-    href: "https://www.instagram.com/cmgsofttech",
+    href: "https://www.instagram.com/cmg_softtech?stkn=MWVudHZhdG1sbjNjMg==",
     icon: Instagram,
   },
   {
