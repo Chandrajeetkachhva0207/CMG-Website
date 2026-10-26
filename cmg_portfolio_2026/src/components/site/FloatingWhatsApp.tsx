@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+const WHATSAPP_NUMBER = "917058800319";
 
 export function FloatingWhatsApp() {
   const message = encodeURIComponent(

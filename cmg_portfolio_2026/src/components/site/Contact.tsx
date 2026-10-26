@@ -691,11 +691,11 @@ const socials: { l: string; href: string; icon: LucideIcon }[] = [
     href: "https://www.instagram.com/cmg_softtech?stkn=MWVudHZhdG1sbjNjMg==",
     icon: Instagram,
   },
-  {
-    l: "GitHub",
-    href: "https://github.com/cmgsofttech",
-    icon: Github,
-  },
+  // {
+  //   l: "GitHub",
+  //   href: "https://github.com/cmgsofttech",
+  //   icon: Github,
+  // },
 ];
 
 export function Footer() {

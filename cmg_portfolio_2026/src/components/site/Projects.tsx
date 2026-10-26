@@ -21,7 +21,7 @@ export const projects = [
       "A bilingual digital platform designed to present the Gurukul's journey, activities, values, programs, reports, and contact information.",
     tech: ["React", "TypeScript", "TanStack Router"],
     image: gurukul,
-    url: "#",
+    url: "https://www.maanarmadasanstha.org/",
   },
   {
     number: "02",
@@ -32,7 +32,7 @@ export const projects = [
       "A premium personal branding website showcasing an entrepreneur, international athlete, mentor, achievements, companies, and vision.",
     tech: ["React", "TanStack Router", "Motion"],
     image: founder,
-    url: "#",
+    url: "https://pixel-perfect-replica-iota-five.vercel.app/",
   },
 ];
 
